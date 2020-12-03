@@ -1,3 +1,4 @@
+import { MonsterService } from './../monster/monster.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MonsterComplete, Action, Buff } from '../monster/model/monster';
@@ -19,12 +20,13 @@ export class ViewAllComponent implements OnInit {
   numOfBuffs: number;
 
   constructor(
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private monsterService: MonsterService
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.allMonsters = loadMonsters();
+      this.allMonsters = this.monsterService.getMonsters();
       this.filterMonsters(new MonsterForm());
     });
   }
@@ -89,16 +91,13 @@ export class ViewAllComponent implements OnInit {
     const isDiscard = this.filterValueMinMax(a.discard, form.discardMin, form.discardMax);
     const isDraw = this.filterValueMinMax(a.draw, form.drawMin, form.drawMax);
     const isAura = this.filterValueMinMax(a.auraDuration, form.auraMin, form.auraMax);
-    const isReaction = a.reactionFlg === form.reactionFlg;
     const isStatus = a.statusFlg === form.statusFlg;
-    return isElements && isSpeed && isAttack && isBuff && isDiscard && isDraw  && isAura && isReaction && isStatus;
+    return isElements && isSpeed && isAttack && isBuff && isDiscard && isDraw  && isAura && isStatus;
   }
 
   getBuffHighlight(b: Buff, form: MonsterForm) {
     const isTiming = this.filterTiming(b, form);
-    const isCritical = Boolean(b.critFlg) === Boolean(form.critFlg);
-    const isFlipEvent = Boolean(b.flipEventFlg) === Boolean(form.flipEventFlg);
-    return isTiming && isCritical && isFlipEvent;
+    return isTiming;
   }
 
   filterTiming(b: Buff, form: MonsterForm) {

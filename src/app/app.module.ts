@@ -1,3 +1,4 @@
+import { MaterialModule } from 'src/app/material-module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonComponentsModule } from './modules/common/common-components.module';
 import { MonsterModule } from './modules/monster/monster.module';
@@ -11,6 +12,7 @@ import { AppComponent } from './app.component';
 import { ViewAllModule } from './modules/view-all/view-all.module';
 import { RouterModule } from '@angular/router';
 import { PrintModule } from './modules/print/print.module';
+import { RulebookModule } from './modules/rulebook/rulebook.module';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { PrintModule } from './modules/print/print.module';
     MonsterModule,
     ViewAllModule,
     BrowserAnimationsModule,
-    PrintModule
+    PrintModule,
+    RulebookModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent],

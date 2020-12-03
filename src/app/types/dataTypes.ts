@@ -8,7 +8,7 @@ export type ElemType = typeof ELEMENTS[number];
 export const ROLES = [`Warrior`, `Assassin`, `Technical`, `Tank`, `Support`, `Tricky`] as const;
 export type Role = typeof ROLES[number];
 
-export const BUFF_TIMINGS = [`Pre-Actions`, `With Attack`, `Post Actions`, `None`];
+export const BUFF_TIMINGS = [`Pre-Actions`, `With Attack`, `Post Actions`];
 export type BuffTiming = typeof BUFF_TIMINGS[number];
 
 const typeChart = new Array;
@@ -22,10 +22,10 @@ for (let i = 0; i < 2; i++) {
     b.buffName = `Cant Escape!`;
     b.timing = `Pre-Actions`;
     b.buffText = `Prevent the enemy monster from switching this turn if your opponent selected a switch action.`;
-    b.critFlg = true;
+    b.flipEventFlg = true;
+    b.flipEventText = `This attack gains <div>+1[ATK].</div>`;
     standardBuffArray.push(b);
 }
-standardBuffArray[0].critFlg = false;
 export const STANDARD_BUFFS: Buff[] = standardBuffArray;
 
 export const PLAYER_BOARD_TEXT: string[] = [
@@ -54,38 +54,39 @@ export const MODIFIER_OPTIONS_NEG = [0, -1, -2, -3, -4, -5, `X`];
 export type TermCodeValue = string;
 
 // best method I could think of with the least redundancy while maintaining strong typing
-const TERM_KEYS = [`~BURN~`, `~SUCCESS~`, `~FLINCH~`, `~PARALYZE~`, `~LEECH~`, `~FATIGUE~`,
+export const TERM_KEYS = [`~WOUND~`, `~SUCCESS~`, `~FLINCH~`, `~DRAIN~`, `~FATIGUE~`,
     `~STATUS~`, `~SINGLE~`, `~STUN~`, `~RECOIL~`, `~SWITCH~`, `~SUPER~`, `~FASTER~`, `~SLOWER~`, 
-    `~GOOP~`, `~ETHEREAL~`, '~PIERCE~'] as const;
+    `~GOOP~`, `~ETHEREAL~`, '~PIERCE~', `~RESIST~`, `~EFFECTIVE~`, `~CRUSH~`] as const;
 export type TermCode = typeof TERM_KEYS[number];
 export const TERM_CODES = [
-    new Term(`~BURN~`, `Burned monsters ignore their attack's elemental modifiers. `
-     + `If the monster is <div>[L] [R] [S],</div> that monster gains {\"stat\": \"ATK\", \"num\": 1, \"isPositive\": false}.`),
+    new Term(`~WOUND~`, `Wounded monsters ignore their attack's elemental modifiers and are dealt <div>+1[ATK]</div>`
+     + ` from attacks they are weak to.`),
+     new Term(`~CRUSH~`, `Remove this many number of  [PQ] from the enemy monster.`),
+     new Term(`~EFFECTIVE~`, `Monsters are weak to elements found on the bottom left of their monster card.`),
      new Term(`~ETHEREAL~`, `Ethereals are removed from the game after played as buffs.`),
      new Term(`~FASTER~`, `This action is faster if both players select a monster action and yours has a higher speed.`),
-     new Term(`~FATIGUE~`, `Fatigued monsters cannot buff their attacks. ` +
-     `If the monster is <div>[W] [E] [F],</div> that monster gains {\"stat\": \"DEF\", \"num\": 1, \"isPositive\": false}.`),
+     new Term(`~FATIGUE~`, `Fatigued monsters cannot buff their attacks.`),
      new Term(`~FLINCH~`, `Actions with flinch prevent the enemy monster's monster action if this action is faster.`),
-     new Term(`~GOOP~`, `Goop buffs have no buff effect if you do not have <b>Oozygoopz</b> on your team.`),
-     new Term(`~LEECH~`, `Leeched monsters suffer <div>1[ATK]</div> at the end of each turn, and your active monster heals `
-     + `<div>1[HP].</div> Stacks up to three.`),
-     new Term(`~PARALYZE~`, `If a monster is paralyzed, all of that monster's actions have:<br>`
-     + `<div>[2]: </div>This action is successful. Perform these flips first and ignore all  [!] `),
-     new Term('~PIERCE~', `Attacks with pierce ignore the enemy monster's postitve [DEF] increases.`),
+     new Term(`~GOOP~`, `If you do not have <b>Oozygoopz</b> on your team, goop buffs have no buff effect and are returned `
+     + `to its owner's discard pile when played as a buff.`),
+     new Term(`~DRAIN~`, `At the end of the turn, drained monsters suffer <div>1[ATK]</div> and your active monster heals `
+     + `<div>1[HP].`),
+     new Term(`~STUN~`, `Stunned monster's switch actions happen after monster actions.`),
+     new Term('~PIERCE~', `Attacks with pierce ignore the enemy monster's [DEF].`),
      new Term(`~RECOIL~`, `This monster suffers this amount of recoil damage to itself. `
      + `This damage cannot be prevented and still occurs if this action is prevented.`),
+     new Term(`~RESIST~`, `Monsters are resistant to elements found on the bottom right of their monster card.`),
      new Term(`~SINGLE~`, `Single use actions recharge on switch and are considered used if this action is prevented.`),
      new Term(`~SLOWER~`, `This action is slower if both players select a monster action and yours has a lower speed.`),
-     new Term(`~STATUS~`, `Status conditions [STATUS] – burn, fatigue, leech, paralyze.`),
-     new Term(`~STUN~`, `Stunned monsters cannot perform any actions next turn. Remove at the end of next turn.`),
+     new Term(`~STATUS~`, `Status conditions [STATUS] – wound, fatigue, drain, stun.`),
      new Term(`~SUCCESS~`, `Unsuccessful actions do nothing.`),
      new Term(`~SUPER~`, `Supers require and use two [B] slots.`),
-     new Term(`~SWITCH~`, `Switch in abilities also trigger at the start of the game.`),
+     new Term(`~SWITCH~`, `Switch in abilities also trigger at the start of the game and following a monster KO.`),
 ] as const;
 
 const IMAGE_KEYS = [`[ATK]`, `[+]`, `[B]`, `[-]`, `[1]`, `[2]`, `[3]`, `[4]`, `[DEF]`, `[TA]`, `[X]`, `[SUCC]`, `[FAIL]`,
 `[SPD]`, `[F]`, `[W]`, `[L]`, `[R]`, `[E]`, `[S]`, `[ST]`, `[REAC]`, `[HP]`, '[CUBE]', '[NQ]', '[PQ]', '[ARROW]', '[!]',
-'[SPECIAL]', '[STATUS]', '[COUNTER]', '[MQ]', '[ACORN]', '[HONEY]', '[WISH]', '[TORMENT]'] as const;
+'[SPECIAL]', '[STATUS]', '[COUNTER]', '[MQ]', '[ACORN]', '[HONEY]', '[WISH]', '[TORMENT]', '[FLIP]'] as const;
 export type ImageCode = typeof IMAGE_KEYS[number];
 export const IMAGE_CODES = [
     new Image(`[ATK]`, SYMBOLS_PATH + `attack.png`),
@@ -124,5 +125,18 @@ export const IMAGE_CODES = [
     new Image(`[HONEY]`, SYMBOLS_PATH + `dripping-honey.png`),
     new Image(`[WISH]`, SYMBOLS_PATH + `round-star.png`),
     new Image(`[TORMENT]`, SYMBOLS_PATH + `torment.png`),
+    new Image(`[FLIP]`, SYMBOLS_PATH + `flip.png`),
 ] as const;
+
+export const getAdvantages = (elem: ElemType): number[] => {
+    // fire, water, rock, leaf, elec, death
+    // -1 means the monster takes MORE damage
+    // 1 means resistance
+      if (elem === 'Death') {return [0, -1, 1, 1, -1, 0]; }
+      if (elem === 'Electric') { return [-1, 1, -1, 0, 0, 1]; }
+      if (elem === 'Fire') { return [0, -1, -1, 1, 1, 0]; }
+      if (elem === 'Water') { return [1, 0, 0, -1, -1, 1]; }
+      if (elem === 'Leaf') { return [-1, 1, 1, 0, 0, -1]; }
+      if (elem === 'Rock') { return [1, 0, 0, -1, 1, -1]; }
+  };
 

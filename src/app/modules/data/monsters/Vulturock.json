@@ -6,122 +6,99 @@
   "actions": [
     {
       "abilityName": "Kraterkazee",
-      "abilityText": "<B>Recoil 2[ATK]</b>~RECOIL~",
+      "abilityText": "[FLIP] [FLIP]. <br><br><b>Recoil 2[ATK]</b>~RECOIL~",
       "element": "Death",
-      "modifiers": [
-        0,
-        0,
-        2,
-        3,
-        0,
-        0
-      ],
       "auraDuration": 0,
       "statusFlg": false,
-      "reactionFlg": false,
-      "attack": 6,
+      "attack": 4,
       "speed": 7,
       "draw": 0,
       "discard": 2,
-      "buff": 1
+      "buff": 1,
+      "modifier": 2,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     },
     {
       "abilityName": "Roc Rock",
-      "abilityText": "<B>Recoil 1[ATK]</b> ~RECOIL~",
+      "abilityText": "<b>Recoil 1[ATK]</b>~RECOIL~",
       "element": "Rock",
-      "modifiers": [
-        0,
-        2,
-        0,
-        0,
-        0,
-        2
-      ],
       "auraDuration": 0,
       "statusFlg": false,
-      "reactionFlg": false,
       "attack": 4,
       "speed": 5,
       "draw": 0,
       "discard": 1,
-      "buff": 2
+      "buff": 2,
+      "modifier": 2,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     },
     {
       "abilityName": "Iron Defense",
-      "abilityText": "This monster gains {\"stat\": \"DEF\", \"num\": 2, \"isPositive\": true}.",
+      "abilityText": "This monster gains <div>{\"stat\": \"DEF\", \"num\": 4, \"isPositive\": true}.</div>",
       "element": "Rock",
-      "modifiers": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
       "auraDuration": 0,
       "statusFlg": true,
-      "reactionFlg": false,
-      "speed": 1,
-      "draw": 1,
+      "speed": 3,
+      "draw": 0,
       "discard": 0,
-      "buff": 0
+      "buff": 0,
+      "lastUpdated": "Tue, 17 Nov 2020 21:30:43 GMT"
     },
     {
       "abilityName": "Scavenge",
-      "abilityText": "This monster heals <div>X[HP],</div> where X is equal to your speed minus the enemy monster's speed. If the opponent selected a non-monster action this turn, heal <div>5[HP]</div> instead. <b>Single use.</b> ~SINGLE~",
+      "abilityText": "This monster heals <div>X[HP],</div> where X is equal to your speed minus the enemy monster's speed. If the opponent selected a non-monster action this turn, heal <div>5[HP]</div> instead. <br><br><b>Single use.</b> ~SINGLE~",
       "element": "Death",
-      "modifiers": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
       "auraDuration": 0,
       "statusFlg": true,
-      "reactionFlg": false,
       "speed": 9,
       "draw": 0,
       "discard": 1,
-      "buff": 0
+      "buff": 0,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     }
   ],
   "buffs": [
     {
       "buffName": "Beak Drill",
       "timing": "Pre-Actions",
-      "buffText": "If the enemy monster used a [MQ] this turn, your opponent loses an additional [MQ].",
-      "critFlg": true
+      "buffText": "[FLIP] [FLIP]",
+      "flipEventText": "This monster heals 1[HP], [FLIP].",
+      "flipEventFlg": true,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     },
     {
       "buffName": "Recoil",
       "timing": "Post Actions",
-      "buffText": "<b>Super</b><br>The enemy monster suffers <div>1[ATK]</div> for each card your opponent discarded and for each buff slot used this turn.~SUPER~",
-      "flipEventText": "Your active monster suffers <div>1[ATK]</div>",
-      "critFlg": false,
-      "flipEventFlg": true
+      "buffText": "<b>Super, Ethereal</b><br>The enemy monster suffers <div>1[ATK]</div> for each card your opponent discarded and for each buff slot used this turn.~SUPER~~ETHEREAL~",
+      "flipEventText": "This attack gains +2[ATK] and <b>recoil 2[ATK]</b>.",
+      "flipEventFlg": true,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     },
     {
       "buffName": "Bigger Rocs",
       "timing": "Pre-Actions",
       "buffText": "This monster gains {\"stat\": \"ATK\", \"num\": 1, \"isPositive\": true}.",
-      "critFlg": false
+      "flipEventText": "This attack gains +1[ATK].",
+      "flipEventFlg": true,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     },
     {
       "buffName": "Bigger Rocs",
       "timing": "Pre-Actions",
       "buffText": "This monster gains {\"stat\": \"ATK\", \"num\": 1, \"isPositive\": true}.",
-      "critFlg": false
+      "flipEventText": "This attack gains +1[ATK].",
+      "flipEventFlg": true,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     }
   ],
   "monsterId": 9,
   "abilityName": "Wing Clip",
   "monsterName": "Vulturock",
-  "abilityText": "When this monster <b>switches in</b>, the enemy monster gains {\"stat\": \"SPD\", \"num\": 2, \"isPositive\": false}~SWITCH~",
+  "abilityText": "When this monster <b>switches in</b>, the enemy monster gains <div>{\"stat\": \"SPD\", \"num\": 2, \"isPositive\": false}.</div>~SWITCH~",
   "hp": 9,
   "complexity": 1,
   "promiseDescription": "Vulturock is reckless assassin that requires finesse. Knowing how to position Vulturock to maximize Scavenge and Iron Defense is key to its survival.",
   "initiative": 75,
+  "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT",
   "role": "Assassin"
 }

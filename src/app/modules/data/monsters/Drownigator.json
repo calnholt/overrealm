@@ -8,121 +8,99 @@
       "abilityName": "Fatigue",
       "abilityText": "<b>Fatigue [STATUS]</b> ~FATIGUE~",
       "element": "Death",
-      "modifiers": [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0
-      ],
       "auraDuration": 0,
       "statusFlg": true,
-      "reactionFlg": false,
-      "speed": 6,
+      "speed": 3,
       "draw": 0,
       "discard": 2,
-      "buff": 0
+      "buff": 0,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
+    },
+    {
+      "abilityName": "Expunge",
+      "abilityText": "If the enemy monster has a [STATUS], this attack gains <div>[FLIP] [FLIP].</div><br><br><b>Single use</b>.~STATUS~~SINGLE~",
+      "element": "Death",
+      "auraDuration": 0,
+      "statusFlg": false,
+      "attack": 4,
+      "speed": 8,
+      "draw": 0,
+      "discard": 1,
+      "buff": 1,
+      "modifier": 3,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     },
     {
       "abilityName": "Foul Play",
-      "abilityText": "[2]: The enemy monster gains {\"stat\": \"ATK\", \"num\": 1, \"isPositive\": false}.</div>",
+      "abilityText": "[FLIP]",
       "element": "Death",
-      "modifiers": [
-        0,
-        0,
-        2,
-        2,
-        0,
-        0
-      ],
       "auraDuration": 0,
       "statusFlg": false,
-      "reactionFlg": false,
       "attack": 2,
       "speed": 3,
       "draw": 0,
       "discard": 1,
-      "buff": 1
+      "buff": 1,
+      "modifier": 1,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     },
     {
       "abilityName": "Surge",
       "abilityText": "",
       "element": "Water",
-      "modifiers": [
-        1,
-        0,
-        0,
-        0,
-        0,
-        2
-      ],
       "auraDuration": 0,
       "statusFlg": false,
-      "reactionFlg": false,
       "attack": 1,
       "speed": 7,
       "draw": 0,
       "discard": 0,
-      "buff": 3
-    },
-    {
-      "abilityName": "Expunge",
-      "abilityText": "<b>Single use</b>. If the enemy monster has a [STATUS], this attack gains:<br>[1]: <div>+2[ATK]</div>~SINGLE~~STATUS~",
-      "element": "Death",
-      "modifiers": [
-        0,
-        0,
-        3,
-        2,
-        0,
-        0
-      ],
-      "auraDuration": 0,
-      "statusFlg": false,
-      "reactionFlg": false,
-      "attack": 4,
-      "speed": 8,
-      "draw": 0,
-      "discard": 1,
-      "buff": 1
+      "buff": 3,
+      "modifier": 1,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     }
   ],
   "buffs": [
     {
-      "buffName": "Disarm",
+      "buffName": "Abrupt Weakness",
       "timing": "Pre-Actions",
-      "buffText": "The enemy monster gains {\"stat\": \"ATK\", \"num\": 1, \"isPositive\": false}.",
-      "critFlg": true
+      "buffText": "<b>Super, Ethereal, Fatigue [STATUS]</b> ~SUPER~~ETHEREAL~~FATIGUE~",
+      "flipEventText": "The enemy monster gains <div>{\"stat\": \"ATK\", \"num\": 1, \"isPositive\": false}.</div>",
+      "flipEventFlg": true,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
+    },
+    {
+      "buffName": "One Step Ahead",
+      "timing": "Pre-Actions",
+      "buffText": "This attack gains +1[ATK] and <b>pierce</b>. ~PIERCE~",
+      "flipEventText": "Look at your opponent's hand.",
+      "flipEventFlg": true,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     },
     {
       "buffName": "Cripple",
       "timing": "Pre-Actions",
       "buffText": "The enemy monster gains {\"stat\": \"ATK\", \"num\": 1, \"isPositive\": false}.",
-      "flipEventText": "If your opponent has more cards in their hand than you, that player discards one card at random.",
-      "critFlg": false,
-      "flipEventFlg": true
+      "flipEventText": "If your opponent has more cards in their hand than you, your opponent [-].",
+      "flipEventFlg": true,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     },
     {
       "buffName": "Tremble",
       "timing": "Post Actions",
       "buffText": "The enemy monster gains {\"stat\": \"SPD\", \"num\": 2, \"isPositive\": false}.",
-      "critFlg": true
-    },
-    {
-      "buffName": "Abrupt Weakness",
-      "timing": "Pre-Actions",
-      "buffText": "[1]: <b>Fatigue [STATUS]</b> ~FATIGUE~",
-      "critFlg": false
+      "flipEventText": "The enemy monster gains {\"stat\": \"ATK\", \"num\": 1, \"isPositive\": false}.",
+      "flipEventFlg": true,
+      "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
     }
   ],
   "monsterId": 5,
   "abilityName": "Panic Attack",
   "monsterName": "Drownigator",
-  "abilityText": "When this monster <b>switches in</b>, the opponent discards a card at random.~SWITCH~",
+  "abilityText": "When this monster <b>switches in</b>, the opponent <div>[-].</div>~SWITCH~",
   "hp": 9,
   "complexity": 1,
   "promiseDescription": "Drownigator is an immediate threat. Panic Attack puts your opponent on the defensive and a properly buffed Expunge can devastate leaf and rock types.",
   "initiative": 70,
-  "role": "Tricky"
+  "role": "Tricky",
+  "lastUpdated": "Mon, 16 Nov 2020 08:58:22 GMT"
 }

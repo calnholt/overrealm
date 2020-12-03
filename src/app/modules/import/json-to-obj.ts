@@ -14,6 +14,7 @@ import { default as Smolderskulk } from '../data/monsters/Smolderskulk.json';
 import { default as Oozygoopz } from '../data/monsters/Oozygoopz.json';
 import { default as Galvanite } from '../data/monsters/Galvanite.json';
 import { default as Squirrberus } from '../data/monsters/Squirrberus.json';
+import { default as Ashdash } from '../data/monsters/Ashdash.json';
 import { ElemType, ELEMENTS, Role, ROLES } from './../../types/dataTypes';
 import { MonsterComplete, Buff, Action } from '../monster/model/monster';
 
@@ -25,28 +26,6 @@ const getRole = (text: string): Role => {
     return ROLES.find(r => r.toString() === text);
 };
 
-const getMonsterFileByName = (monsterName: string) => {
-    switch (monsterName) {
-        case('Boltblebee'): return Boltblebee;
-        case('Chargroar'): return Chargroar;
-        case('Cleansitoad'): return Cleansitoad;
-        case('Cragadilo'): return Cragadilo;
-        case('Drownigator'): return Drownigator;
-        case('Flexferno'): return Flexferno;
-        case('Galeaffy'): return Galeaffy;
-        case('Galvanite'): return Galvanite;
-        case('Oozygoopz'): return Oozygoopz;
-        case('Smolderskulk'): return Smolderskulk;
-        case('Stallagrowth'): return Stallagrowth;
-        case('Steamie'): return Steamie;
-        case('Squirrberus'): return Squirrberus;
-        case('Phantomaton'): return Phantomaton;
-        case('Vulturock'): return Vulturock;
-        case('Zappguin'): return Zappguin;
-    }
-    return {};
-};
-
 export const loadMonsters = (selectedMonster?: any): Array<MonsterComplete> => {
     let out = new Array<MonsterComplete>();
     let ALL = [];
@@ -54,9 +33,10 @@ export const loadMonsters = (selectedMonster?: any): Array<MonsterComplete> => {
         ALL = [selectedMonster];
     } else {
         ALL = [
+            Ashdash,
             Boltblebee,
             Chargroar,
-            Cleansitoad,
+            //Cleansitoad,
             Cragadilo,
             Drownigator,
             Flexferno,
@@ -86,7 +66,8 @@ export const loadMonsters = (selectedMonster?: any): Array<MonsterComplete> => {
             'complexity',
             'promiseDescription',
             'extraBoard',
-            'initiative'
+            'initiative',
+            'lastUpdated',
         ];
         MONSTER_PROPERTIES.forEach(p => monster[p] = json[p]);
         const elements = Array<ElemType>();
@@ -105,14 +86,14 @@ export const loadMonsters = (selectedMonster?: any): Array<MonsterComplete> => {
             'buff',
             'auraDuration',
             'statusFlg',
-            'reactionFlg',
+            'modifier',
+            'lastUpdated',
         ];
         for (let i = 0; i < ACTIONS; i++) {
             const action = new Action();
             ACTION_PROPERTIES.forEach(p => action[p] = json.actions[i][p]);
             action.monsterName = monster.monsterName;
             action.element = getElemType(json.actions[i].element);
-            action.modifiers = json.actions[i].modifiers ? json.actions[i].modifiers : action.modifiers;
             action.number = (i + 1);
             monster.actions.push(action);
         }
@@ -121,10 +102,10 @@ export const loadMonsters = (selectedMonster?: any): Array<MonsterComplete> => {
         const BUFF_PROPERTIES = [
             'timing',
             'buffText',
-            'critFlg',
             'flipEventText',
             'flipEventFlg',
             'buffName',
+            'lastUpdated',
         ];
         for (let i = 0; i < BUFFS; i++) {
             const buff = new Buff();
@@ -142,10 +123,3 @@ export const loadMonsters = (selectedMonster?: any): Array<MonsterComplete> => {
     });
     return out;
 };
-
-export const loadMonster = (monsterName: string): MonsterComplete => {
-    return loadMonsters(getMonsterFileByName(monsterName))[0];
-};
-
-
-
